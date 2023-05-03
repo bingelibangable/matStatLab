@@ -2,6 +2,7 @@ import plotly
 import plotly.express as px
 import re
 import random
+import math
 
 def drawCorr(f):
     for n in range (8):
@@ -16,9 +17,47 @@ def drawCorr(f):
     fig = px.bar(values)
     fig.show()
 
+def mExp(n:int, lis:list):
+    sum = 0
+    for i in range(n):
+        sum = sum + lis[n]
+    return sum / n
+
+def disp(n:int, mathExp:float, lis:list):
+    sum = 0
+    for i in range(n):
+        sum = math.pow(lis[i] - mathExp, 2)
+    return sum / n
+
+def corr(n:int, mathExp:float, lis:list, f:int):
+    numSum = 0
+    denSum = 0
+    for i in range(f):
+        numSum = numSum + (lis[i] - mathExp) * (lis[i+f]-mathExp)
+    for i in range(n):
+        sum = math.pow(lis[i] - mathExp, 2)
+    return numSum / denSum
+
 f = open('out.txt', 'w')
+i = 0
 for i in range(10000):
-    f.write(random.random())
+    data.append(random.random())
+i = 10
+while (i < 10001):
+    f.write("Набор № " + (str)(i))
+    mathExp = mExp(i, data);
+    f.write("Мат. ожидание = ");
+    f.write(mathExp)
+    dispers = disp(i, mathExp, data);
+    f.write("Дисперсия = ")
+    f.write(dispers)
+    f.write("среднее квадратическое отклонение = ")
+    f.write(math.sqrt(dispers))
+    shift = i;
+    f.write("Корреляция")
+    for k in range(shift):
+        f.write(corr(i,mathExp,data,k))
+    i = i * 10
 
 f = open('out.txt', 'r')
 for i in range(4):
