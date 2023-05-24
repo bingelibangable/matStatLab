@@ -101,7 +101,7 @@ def getPiosson(mu: int):
 		alpha = alpha - p
 		p = p * mu/i
 		i = i + 1
-	return i
+	return i - 1
 
 def getPiosson2(mu: int):
 	alpha = random.random()
@@ -111,7 +111,7 @@ def getPiosson2(mu: int):
 		alpha = random.random()
 		p = p * alpha
 		i = i + 1
-	return i
+	return i - 1
 
 def signCriterion(first: list, second: list, size: int):
 	signs = list()
@@ -135,7 +135,13 @@ def signCriterion(first: list, second: list, size: int):
 		print('nenorm')
 
 #[0,1,2,3,4,5,6,7,8,9]
-
+piossonList = list()
+piossonList2 = list()
+for i in range(10000):
+	piossonList.append(getPiosson(10))
+	piossonList2.append(getPiosson2(10))
+MandD(piossonList)
+MandD(piossonList2)
 
 lust = list()
 lest = list()
@@ -251,13 +257,6 @@ ax.set_ylim([0, 0.7])
 plt.show()
 plt.plot(getPlotP(geomListy, max(geomListx))[1], getPlotP(geomListy, max(geomListx))[0])
 plt.show()
-piossonList = list()
-piossonList2 = list()
-for i in range(10000):
-	piossonList.append(getPiosson(10))
-	piossonList2.append(getPiosson2(10))
-MandD(piossonList)
-MandD(piossonList2)
 geomListy = getP(1, max(piossonList), piossonList)
 geomListx.clear()
 for i in range(max(piossonList) - 1):
